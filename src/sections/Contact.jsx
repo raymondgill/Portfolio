@@ -83,7 +83,7 @@ const Contact = () => {
           <h2 className="text-heading">Let's Talk</h2>
           <p className="font-normal text-neutral-400">
             Whether you're looking to build a new website, improve your existing
-            platform, or bring a unique project to life, I'm here to help
+            platform, or bring a unique project to life, We are here to help...
           </p>
         </div>
         <form className="w-full" onSubmit={handleSubmit}>
