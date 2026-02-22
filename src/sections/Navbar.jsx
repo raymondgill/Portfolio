@@ -4,23 +4,23 @@ function Navigation() {
   return (
     <ul className="nav-ul">
       <li className="nav-li">
-        <a className="nav-link" href="#home">
-          Home
+        <a className="nav-link" href="#">
+          HOME
         </a>
       </li>
       <li className="nav-li">
         <a className="nav-link" href="#about">
-          About
+          ABOUT
         </a>
       </li>
       <li className="nav-li">
         <a className="nav-link" href="#work">
-          Work
+          WORK
         </a>
       </li>
       <li className="nav-li">
         <a className="nav-link" href="#contact">
-          Contact
+          CONTACT
         </a>
       </li>
     </ul>
@@ -36,7 +36,7 @@ const Navbar = () => {
             href="/"
             className="text-xl font-bold transition-colors text-neutral-400 hover:text-white"
           >
-            Ali
+          H & H Designers and Developers
           </a>
           <button
             onClick={() => setIsOpen(!isOpen)}

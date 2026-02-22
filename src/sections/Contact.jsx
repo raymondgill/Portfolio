@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import Alert from "../components/Alert";
 import { Particles } from "../components/Particles";
 const Contact = () => {
+  // initialize EmailJS once. this should be your **public key** (also called user ID in some docs).
+  // if it doesn't match the key used on the service/template you will see "account not found".
+  // put it in an environment variable for production instead of hardcoding.
+  const PUBLIC_KEY = "GRG4vLyJ3mRKz82BC";
+
+  useEffect(() => {
+    emailjs.init(PUBLIC_KEY);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,30 +37,39 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      console.log("From submitted:", formData);
+        console.log("Form submitted:", formData);
       await emailjs.send(
-        "service_79b0nyj",
-        "template_17us8im",
+        "service_vhskl2c",
+        "template_beoy4vh",
         {
           from_name: formData.name,
-          to_name: "Ali",
+          // the recipient address is normally set in the EmailJS template (recommended).
+          // if you want to override it programmatically you must:
+          //  1. add a variable named `to_email` to the template,
+          //  2. upgrade to a paid plan (free plan only sends to the address on file),
+          //  3. then pass the field below.
+          to_email: "raymondgill2001@gmail.com",
           from_email: formData.email,
-          to_email: "AliSanatiDev@gmail.com",
           message: formData.message,
         },
-        "pn-Bw_mS1_QQdofuV"
+        PUBLIC_KEY // explicitly include the same public key again
       );
       setIsLoading(false);
       setFormData({ name: "", email: "", message: "" });
-      showAlertMessage("success", "You message has been sent!");
+      showAlertMessage("success", "Your message has been sent!");
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
-      showAlertMessage("danger", "Somthing went wrong!");
+      console.error("EmailJS error", error);
+      // often there is a `.status` and `.text` on the error object
+      // which include the HTTP status and reason phrase from EmailJS.
+      const msg =
+        (error && (error.text || error.message)) ||
+        `Account or key not found (status ${error?.status || "?"})`;
+      showAlertMessage("danger", msg);
     }
   };
   return (
-    <section className="relative flex items-center c-space section-spacing">
+    <section className="relative flex items-center c-space section-spacing" id="contact">
       <Particles
         className="absolute inset-0 -z-50"
         quantity={100}
@@ -64,7 +82,7 @@ const Contact = () => {
         <div className="flex flex-col items-start w-full gap-5 mb-10">
           <h2 className="text-heading">Let's Talk</h2>
           <p className="font-normal text-neutral-400">
-            Whether you're loking to build a new website, improve your existing
+            Whether you're looking to build a new website, improve your existing
             platform, or bring a unique project to life, I'm here to help
           </p>
         </div>
@@ -78,7 +96,7 @@ const Contact = () => {
               name="name"
               type="text"
               className="field-input field-input-focus"
-              placeholder="John Doe"
+              placeholder="Enter your full name"
               autoComplete="name"
               value={formData.name}
               onChange={handleChange}
@@ -94,7 +112,7 @@ const Contact = () => {
               name="email"
               type="email"
               className="field-input field-input-focus"
-              placeholder="JohnDoe@email.com"
+              placeholder="example@email.com"
               autoComplete="email"
               value={formData.email}
               onChange={handleChange}
