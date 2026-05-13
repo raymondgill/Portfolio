@@ -40,7 +40,7 @@ const Contact = () => {
         console.log("Form submitted:", formData);
       await emailjs.send(
         "service_xiogakb",
-        "template_beoy4vh",
+        "template_9092lql",
         {
           from_name: formData.name,
           // the recipient address is normally set in the EmailJS template (recommended).
