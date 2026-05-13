@@ -48,11 +48,12 @@
   }
 }
 body {
-  background: #030412;
   font-family: "Funnel Display", sans-serif;
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  margin: 0;
+  background: black;
 }
 
 .c-space {
