@@ -17,6 +17,13 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
   particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 10; // Z
 }
 
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#work" },
+  { label: "Contact", href: "#contact" },
+];
+
 function Scene() {
   const pointsRef = useRef();
   const groupRef = useRef();
@@ -87,13 +94,19 @@ export default function HeroSection() {
         
         <nav className="flex justify-between items-center px-10 py-8 pointer-events-auto">
           <div className="flex space-x-10 text-[11px] uppercase tracking-[0.2em] text-gray-500 font-medium">
-            {['Home', 'Cases', 'Library', 'Resources'].map((item) => (
-              <a key={item} href="#" className="hover:text-white transition-all duration-300">{item}</a>
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="hover:text-white transition-all duration-300"
+              >
+                {link.label}
+              </a>
             ))}
           </div>
           <div className="flex items-center space-x-4">
-             <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-             <span className="text-[10px] font-bold tracking-widest uppercase">System Online</span>
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[10px] font-bold tracking-widest uppercase">System Online</span>
           </div>
         </nav>
 
@@ -131,9 +144,9 @@ export default function HeroSection() {
               </motion.p>
               
               <div className="flex items-center space-x-8">
-                <button className="text-xs font-bold tracking-widest border-b border-white/20 pb-1 hover:border-white transition-all">
+                <a href="#contact" className="text-xs font-bold tracking-widest border-b border-white/20 pb-1 hover:border-white transition-all">
                   CONTACT US
-                </button>
+                </a>
                 
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
