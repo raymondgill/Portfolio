@@ -6,7 +6,7 @@ const Contact = () => {
   // initialize EmailJS once. this should be your **public key** (also called user ID in some docs).
   // if it doesn't match the key used on the service/template you will see "account not found".
   // put it in an environment variable for production instead of hardcoding.
-  const PUBLIC_KEY = "GRG4vLyJ3mRKz82BC";
+  const PUBLIC_KEY = "xO0SHIQXsJ6RfgP2z";
 
   useEffect(() => {
     emailjs.init(PUBLIC_KEY);
